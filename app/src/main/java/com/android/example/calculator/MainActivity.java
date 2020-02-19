@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText firstNumber;
@@ -40,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void plus(View view) {
-        if (firstNumber.getText().toString().isEmpty() || secondNumber.getText().toString().isEmpty() || firstNumber.getText().toString().equals(".") || secondNumber.getText().toString().equals("."))
+        if (firstNumber.getText().toString().isEmpty() || secondNumber.getText().toString().isEmpty() || firstNumber.getText().toString().equals(".") || secondNumber.getText().toString().equals(".")) {
+            errorToast();
             return;
+        }
 
         hideAllResults();
         resultPlus.setVisibility(View.VISIBLE);
@@ -51,8 +54,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void minus(View view) {
-        if (firstNumber.getText().toString().isEmpty() || secondNumber.getText().toString().isEmpty() || firstNumber.getText().toString().equals(".") || secondNumber.getText().toString().equals("."))
+        if (firstNumber.getText().toString().isEmpty() || secondNumber.getText().toString().isEmpty() || firstNumber.getText().toString().equals(".") || secondNumber.getText().toString().equals(".")) {
+            errorToast();
             return;
+        }
 
         hideAllResults();
         resultMinus.setVisibility(View.VISIBLE);
@@ -62,8 +67,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void multiply(View view) {
-        if (firstNumber.getText().toString().isEmpty() || secondNumber.getText().toString().isEmpty() || firstNumber.getText().toString().equals(".") || secondNumber.getText().toString().equals("."))
+        if (firstNumber.getText().toString().isEmpty() || secondNumber.getText().toString().isEmpty() || firstNumber.getText().toString().equals(".") || secondNumber.getText().toString().equals(".")) {
+            errorToast();
             return;
+        }
 
         hideAllResults();
         resultMultiply.setVisibility(View.VISIBLE);
@@ -73,13 +80,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void divide(View view) {
-        if (firstNumber.getText().toString().isEmpty() || secondNumber.getText().toString().isEmpty() || firstNumber.getText().toString().equals(".") || secondNumber.getText().toString().equals("."))
+        if (firstNumber.getText().toString().isEmpty() || secondNumber.getText().toString().isEmpty() || firstNumber.getText().toString().equals(".") || secondNumber.getText().toString().equals(".")) {
+            errorToast();
             return;
+        }
 
         hideAllResults();
         resultDivide.setVisibility(View.VISIBLE);
         double a = Double.parseDouble(firstNumber.getText().toString());
         double b = Double.parseDouble(secondNumber.getText().toString());
         resultDivide.setText(Calculator.div(a, b) + "");
+    }
+
+    private void errorToast() {
+        Toast toast = Toast.makeText(this, "Input a number in both fields.", Toast.LENGTH_LONG);
+        toast.show();
     }
 }
